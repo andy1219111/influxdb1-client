@@ -439,6 +439,13 @@ func (c *Client) Ping() (time.Duration, string, error) {
 	return time.Since(now), version, nil
 }
 
+//Close 关闭http连接
+func (c *Client) Close() {
+	if c.httpClient != nil {
+		c.httpClient.CloseIdleConnections()
+	}
+}
+
 // Structs
 
 // Message represents a user message.
